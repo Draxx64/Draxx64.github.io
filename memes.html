@@ -5,23 +5,21 @@
 				background-color: black;
 			}
 			#skele{
-				width: 50%;
-				height: 50%;
+				width: 99%;
+				height: 99%;
 			}
 		</style>
 		<title>Memes</title>
     </head>
 	
     <body onload="loaded()">
-		<iframe id="beet" width="300" height="300" scrolling="no" frameborder="no" allow="autoplay" src=""></iframe>
+		<iframe id="beet" width="0" height="0" scrolling="no" frameborder="no" allow="autoplay" src=""></iframe>
 		<img id="skele" src="https://i.giphy.com/media/4rEV1y0yOn0sg/giphy.webp" alt="skeltun">
 	</body>
 	
 	<script>
 		function loaded(){
-			console.log("S T A R T E D");
 			document.getElementById("beet").src = "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/332029756&amp;color=%237e00ff&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true";
-			console.log("F I N I S H E D");
 		}
 	</script>
 
