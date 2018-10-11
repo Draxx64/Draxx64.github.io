@@ -7,8 +7,8 @@
 		<h1>Database Testing Area</h1>
 		<p> Nothing here yet</p>
 		<p> change under here every commit </p>
-		<p> 1 </p>
-		<img src="gs://draxx64-547a4.appspot.com/smle.png">
+		<p> 2 </p>
+		<img id="image" src="https://draxx64.github.io/Key.png">
 	</body>
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
@@ -31,7 +31,15 @@
 		  timestampsInSnapshots: true
 		});
 		
+		var gsReference = storage.refFromURL("gs://draxx64-547a4.appspot.com/smle.png");
+		var elem = document.getElementById("image"); // Find an element 
+		elem.src = storage.ref("smle.png");
 		
 		
+		console.log("START LOG");
+		
+		console.log(storage.ref("smle.png"));
+		
+		console.log("FINISH LOG");
 	</script>
 </html>
