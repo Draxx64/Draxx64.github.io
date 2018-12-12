@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HTML injection</title>
+	</head>
+	
+	<body>
+		<p> Hello! type any valid javascript into the text box and press inject script to run it! </p>
+		<textarea id="inj">get</textarea>
+		<button type="button" onclick="inject()">inject script</button>
+	</body>
+
+	<script>
+	
+		function inject(){
+    		var tInjE = document.createElement("script");
+			var tInjN = document.createTextNode(document.getElementById("inj").value);
+        	tInjE.appendChild(tInjN);
+        	document.documentElement.appendChild(tInjE);
+        	document.getElementById("inj").value = "";
+    	}
+    
+	</script>
+
+</html>
