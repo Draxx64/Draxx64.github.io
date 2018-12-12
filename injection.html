@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
+	<style>
+		#inj {
+ 			width: 99%;
+			height: 50%;
+		}
+	</style>
+	
 	<head>
 		<title>HTML injection</title>
 	</head>
 	
 	<body>
 		<p> Hello! type any valid javascript into the text box and press inject script to run it! </p>
-		<textarea id="inj" style="width:25%;height:99%"></textarea>
+		<textarea id="inj" style="width:99%;height:25%"></textarea>
 		<button type="button" onclick="inject()">inject script</button>
 	</body>
 
