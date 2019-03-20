@@ -1,0 +1,69 @@
+<html>
+    <link rel="stylesheet" href="style.css">
+	<title>Draxx64: Hacks</title>
+    <head>
+		<h1>Dumb Hacks</h1>
+    </head>
+    <body>
+		<p>so i get bored and make these small script things</p>
+		<p>simply put it in a script tag</p>
+		<p>or</p>
+		<p>add javascript: before the pasted script and shove that into a bookmark where the link should go and click the bookmark to run it on any page</p>
+		<br>
+		<h2>Background Gradient</h2>
+		<p>makes a smooth color changing background on most pages</p>
+		<p>
+		let x = 0; 
+		function smooth(){ 
+			document.body.style.backgroundColor = "rgb(" + Math.cos(x)*255 + "," + Math.cos(x + 2.1)*255 + "," + Math.cos(x + 4.2)*255 + ")"; 
+			x = x + 0.01;
+			document.getElementById("demo").innerHTML = x;
+		}
+		setInterval(smooth, 75);
+		<br>
+		<h2>Injector</h2>
+		<p>when this is run it puts a box at the bottom of the page that, when you click inject it will put whatever javascript in the webpage and run it</p>
+		<p>initFull();
+		function initFull(){
+			initElements();
+			initScript();
+		}
+		function initElements(){
+			var TAE = document.createElement("textarea");
+			TAE.setAttribute("id", "inj");
+			TAE.setAttribute("rows", "10"); 
+			TAE.setAttribute("cols", "100");
+			document.documentElement.appendChild(TAE); 
+			var BE = document.createElement("button"); 
+			BE.setAttribute("id", "injButton");
+			BE.setAttribute("type", "button"); 
+			BE.setAttribute("onclick", "inject()");
+			var BT = document.createTextNode("inject script"); 
+			BE.appendChild(BT);
+			document.documentElement.appendChild(BE); 
+		}
+		function initScript(){ 
+			var ISE = document.createElement("script"); 
+			var ISN = document.createTextNode(` 
+				function inject(){ 
+					var tInjE = document.createElement("script");
+					var tInjN = document.createTextNode(document.getElementById("inj").value);
+					tInjE.appendChild(tInjN); document.documentElement.appendChild(tInjE); 
+				}
+			`);
+			ISE.appendChild(ISN); 
+			document.documentElement.appendChild(ISE); 
+		}
+		function hide(){
+			var RTAE = document.getElementById("inj"); 
+			RTAE.parentNode.removeChild(RTAE);
+			var RBE = document.getElementById("injButton"); 
+			RBE.parentNode.removeChild(RBE);
+		}
+		</p>
+		
+		<br>
+		<h3><a href="contents.html">Contents</a></h3>
+		<h2>End of page</h2>
+    </body>
+</html>
