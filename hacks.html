@@ -21,9 +21,37 @@
 		}
 		setInterval(smooth, 75);
 		<br>
+		<h2>Trip</h2>
+		<p>this gets a random element on the screen that is visible and changes its color and background colors to something random every millisecond</p>
+		<p>
+		trip();
+		function trip(){
+			let all = document.all;
+			let max = all.length; 
+			let edit = all[Math.floor(Math.random()*max)]; 
+			var stopat = 1000; var count = 0; 
+			while(edit.getBoundingClientRect().width == 0){
+				edit = all[Math.floor(Math.random()*max)];
+				count++; if(count > stopat){
+					return; 
+				}
+			}
+			let r = Math.floor(Math.random()*255); 
+			let g = Math.floor(Math.random()*255);
+			let b = Math.floor(Math.random()*255); 
+			edit.style.color = "rgb(" + r + ", " + g + ", " + b + ")";
+			r = Math.floor(Math.random()*255);
+			g = Math.floor(Math.random()*255); 
+			b = Math.floor(Math.random()*255);
+			edit.style.backgroundColor = "rgb(" + r + ", " + g + ", " + b + ")"; 
+			setTimeout(trip, 1);
+		}
+		</p>
+		<br>
 		<h2>Injector</h2>
 		<p>when this is run it puts a box at the bottom of the page that, when you click inject it will put whatever javascript in the webpage and run it</p>
-		<p>initFull();
+		<p>
+		initFull();
 		function initFull(){
 			initElements();
 			initScript();
