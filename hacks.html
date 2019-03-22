@@ -106,6 +106,154 @@
 		}
 		</p>
 		<br>
+		<h2>Combined Element Selector and Background Gradient</h2>
+		<p>use the buttons to hover over elements and click smoothify to change its background</p>
+		<p>
+		initElements();
+		let onEle = 0;
+		let prevColor = document.all[onEle].style.backgroundColor;
+		let x = 0; 
+		function smooth(){
+		  let col = "rgb(" + Math.cos(x)*255 + "," + Math.cos(x + 2.1)*255 + "," + Math.cos(x + 4.2)*255 + ")";
+
+		  var i;
+		  for(i = 0; i < document.all.length; i++){
+			if(document.all[i].getAttribute("COLORME") == "true"){
+				document.all[i].style.backgroundColor = col;
+			}
+		  }
+
+		  document.body.style.backgroundColor = col;
+		  x = x + 0.01;
+		}
+		setInterval(smooth, 75);
+		function initElements(){
+			var TAE = document.createElement("p");
+			TAE.setAttribute("id", "numb");
+			TAE.innerHTML = "Element Number:";
+			document.documentElement.appendChild(TAE);
+
+			var NUM = document.createElement("p");
+			NUM.setAttribute("id", "onEle");
+			NUM.innerHTML = "ELEMENT NUM";
+			document.documentElement.appendChild(NUM);
+
+			var TAE = document.createElement("p");
+			TAE.setAttribute("id", "desc");
+			TAE.innerHTML = "id, class, tag, object:";
+			document.documentElement.appendChild(TAE);
+
+			var TAE = document.createElement("p");
+			TAE.setAttribute("id", "obj");
+			TAE.innerHTML = "ELEMENT ID CLASS TAG OBJECT HERE";
+			document.documentElement.appendChild(TAE);
+
+			var BE = document.createElement("button"); 
+			BE.setAttribute("id", "prev");
+			BE.setAttribute("type", "button"); 
+			BE.setAttribute("onclick", "prev()");
+			var BT = document.createTextNode("prev"); 
+			BE.appendChild(BT);
+			document.documentElement.appendChild(BE); 
+
+			var NXT = document.createElement("button"); 
+			NXT.setAttribute("id", "next");
+			NXT.setAttribute("type", "button"); 
+			NXT.setAttribute("onclick", "next()");
+			var NXTT = document.createTextNode("next"); 
+			NXT.appendChild(NXTT);
+			document.documentElement.appendChild(NXT); 
+
+			var NXT = document.createElement("button"); 
+			NXT.setAttribute("id", "smooth");
+			NXT.setAttribute("type", "button"); 
+			NXT.setAttribute("onclick", "smoothify()");
+			var NXTT = document.createTextNode("smoothify"); 
+			NXT.appendChild(NXTT);
+			document.documentElement.appendChild(NXT); 
+
+			var NXT = document.createElement("button"); 
+			NXT.setAttribute("id", "hide");
+			NXT.setAttribute("type", "button"); 
+			NXT.setAttribute("onclick", "hide()");
+			var NXTT = document.createTextNode("hide"); 
+			NXT.appendChild(NXTT);
+			document.documentElement.appendChild(NXT); 
+
+			document.getElementById("onEle").innerHTML = document.all.length;
+
+		}
+		function hide(){
+			var rem = document.getElementById("numb")
+			rem.parentNode.removeChild(rem);
+			rem = document.getElementById("onEle")
+			rem.parentNode.removeChild(rem);
+			var rem = document.getElementById("desc")
+			rem.parentNode.removeChild(rem);
+			var rem = document.getElementById("obj")
+			rem.parentNode.removeChild(rem);
+			var rem = document.getElementById("next")
+			rem.parentNode.removeChild(rem);
+			var rem = document.getElementById("prev")
+			rem.parentNode.removeChild(rem);
+			var rem = document.getElementById("smooth")
+			rem.parentNode.removeChild(rem);
+			var rem = document.getElementById("hide")
+			rem.parentNode.removeChild(rem);
+		}
+		function smoothify(){
+			if(document.all[onEle].getAttribute("COLORME") == "true"){
+				document.all[onEle].setAttribute("COLORME", "false");
+				document.all[onEle].style.backgroundColor = document.all[onEle].getAttribute("PREVCOL");
+			}
+			else{
+				document.all[onEle].setAttribute("PREVCOL", prevColor);
+				document.all[onEle].setAttribute("COLORME", "true")
+			}
+			next();
+			prev();
+		}
+		function next(){
+			let all = document.all;
+			let max = all.length; 
+			all[onEle].style.backgroundColor = prevColor;
+			onEle++;
+			if(onEle >= max){
+			  onEle = 0;
+			}
+			while(all[onEle].getBoundingClientRect().width == 0){
+				onEle++;
+				if(onEle >= max){
+					onEle = 0;
+				}
+			}
+			prevColor = all[onEle].style.backgroundColor;
+			all[onEle].style.backgroundColor = "blue";
+			document.getElementById("onEle").innerHTML = onEle;
+			document.getElementById("obj").innerHTML = all[onEle].id + ", " + all[onEle].className + ", " + all[onEle].tagName + ", " + all[onEle] + ", " + all[onEle].getAttribute("COLORME") + ", " + all[onEle].getAttribute("PREVCOL");
+		}
+		function prev(){
+			let all = document.all;
+			let max = all.length; 
+			all[onEle].style.backgroundColor = prevColor;
+			onEle--;
+			if(onEle < 0){
+			  onEle = 0;
+			}
+			while(all[onEle].getBoundingClientRect().width == 0){
+				onEle--;
+				if(onEle < 0){
+					onEle = 0;
+					break;
+				}
+			}
+			prevColor = all[onEle].style.backgroundColor;
+			all[onEle].style.backgroundColor = "blue";
+			document.getElementById("onEle").innerHTML = onEle;
+			document.getElementById("obj").innerHTML = all[onEle].id + ", " + all[onEle].className + ", " + all[onEle].tagName + ", " + all[onEle] + ", " + all[onEle].getAttribute("COLORME") + ", " + all[onEle].getAttribute("PREVCOL");
+		}
+		</p>
+		<br>
 		<h2>Trip</h2>
 		<p>this gets a random element on the screen that is visible and changes its color and background colors to something random every millisecond</p>
 		<p>
