@@ -21,6 +21,91 @@
 		}
 		setInterval(smooth, 75);
 		<br>
+		<h2>Element Selector</h2>
+		<p>use the buttons to iterate through the elements on a page and it will tell you about it</p>
+		<p>
+		initElements();
+		let onEle = 0;
+		let prevColor = document.all[onEle].style.backgroundColor;
+		function initElements(){
+			var TAE = document.createElement("p");
+			TAE.innerHTML = "Element Number:";
+			document.documentElement.appendChild(TAE);
+
+			var NUM = document.createElement("p");
+			NUM.setAttribute("id", "onEle");
+			NUM.innerHTML = "ELEMENT NUM";
+			document.documentElement.appendChild(NUM);
+
+			var TAE = document.createElement("p");
+			TAE.innerHTML = "id, class, tag, object:";
+			document.documentElement.appendChild(TAE);
+
+			var TAE = document.createElement("p");
+			TAE.setAttribute("id", "obj");
+			TAE.innerHTML = "ELEMENT ID CLASS TAG OBJECT HERE";
+			document.documentElement.appendChild(TAE);
+
+			var BE = document.createElement("button"); 
+			BE.setAttribute("id", "prev");
+			BE.setAttribute("type", "button"); 
+			BE.setAttribute("onclick", "prev()");
+			var BT = document.createTextNode("prev"); 
+			BE.appendChild(BT);
+			document.documentElement.appendChild(BE); 
+
+			var NXT = document.createElement("button"); 
+			NXT.setAttribute("id", "next");
+			NXT.setAttribute("type", "button"); 
+			NXT.setAttribute("onclick", "next()");
+			var NXTT = document.createTextNode("next"); 
+			NXT.appendChild(NXTT);
+			document.documentElement.appendChild(NXT); 
+
+			document.getElementById("onEle").innerHTML = document.all.length;
+
+		}
+		function next(){
+			let all = document.all;
+			let max = all.length; 
+			all[onEle].style.backgroundColor = prevColor;
+			onEle++;
+			if(onEle >= max){
+			  onEle = 0;
+			}
+			while(all[onEle].getBoundingClientRect().width == 0){
+				onEle++;
+				if(onEle >= max){
+					onEle = 0;
+				}
+			}
+			prevColor = all[onEle].style.backgroundColor;
+			all[onEle].style.backgroundColor = "blue";
+			document.getElementById("onEle").innerHTML = onEle;
+			document.getElementById("obj").innerHTML = all[onEle].id + ", " + all[onEle].className + ", " + all[onEle].tagName + ", " + all[onEle];
+		}
+		function prev(){
+			let all = document.all;
+			let max = all.length; 
+			all[onEle].style.backgroundColor = prevColor;
+			onEle--;
+			if(onEle < 0){
+			  onEle = 0;
+			}
+			while(all[onEle].getBoundingClientRect().width == 0){
+				onEle--;
+				if(onEle < 0){
+					onEle = 0;
+					break;
+				}
+			}
+			prevColor = all[onEle].style.backgroundColor;
+			all[onEle].style.backgroundColor = "blue";
+			document.getElementById("onEle").innerHTML = onEle;
+			document.getElementById("obj").innerHTML = all[onEle].id + ", " + all[onEle].className + ", " + all[onEle].tagName + ", " + all[onEle];
+		}
+		</p>
+		<br>
 		<h2>Trip</h2>
 		<p>this gets a random element on the screen that is visible and changes its color and background colors to something random every millisecond</p>
 		<p>
