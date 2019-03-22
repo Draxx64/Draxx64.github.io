@@ -282,6 +282,26 @@
 		}
 		</p>
 		<br>
+		<h2>Shake</h2>
+		<p>like trip but instead of colors it randomises padding</p>
+		<p>
+		shake();
+		  function shake(){
+			var all = document.all;
+			var max = all.length; 
+			var edit = all[Math.floor(Math.random()*max)]; 
+			var stopat = 1000; var count = 0; 
+			while(edit.getBoundingClientRect().width == 0){
+			  edit = all[Math.floor(Math.random()*max)];
+			  count++; if(count > stopat){
+				return; 
+			  }
+			}
+			edit.style.padding = (Math.random()*10 - 5) + "px";
+			setTimeout(shake, 1);
+		  }
+		</p>
+		<br>
 		<h2>Injector</h2>
 		<p>when this is run it puts a box at the bottom of the page that, when you click inject it will put whatever javascript in the webpage and run it</p>
 		<p>
