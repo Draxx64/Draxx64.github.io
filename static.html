@@ -1,0 +1,36 @@
+<html>
+
+	<head>
+		<link rel="stylesheet" href="./static.css">
+	</head>
+	<body style="background-color: rgb(33, 33, 33)">
+		<canvas id="grid" width="640" height="512"></canvas>
+		<br>
+		<input type="color" class="colorsel" id="colorsel0" value="#ff00ff" oninput="handleChangeColor(event, 0)">
+		<input type="color" class="colorsel" id="colorsel1" value="#00ffff" oninput="handleChangeColor(event, 1)">
+		<input type="color" class="colorsel" id="colorsel2" value="#212121" oninput="handleChangeColor(event, 2)">
+		<input type="color" class="colorsel" id="colorsel3" value="#212121" oninput="handleChangeColor(event, 3)">
+		<br>
+		LinearLerp?: <input type="checkbox" oninput="handleChangeCheckLinear(event)" checked>
+		<br>
+		RelativeLerp?: <input type="checkbox" oninput="handleChangeCheckRelative(event)" checked>
+		<br>
+		Animate?: <input type="checkbox" oninput="handleChangeCheckAnimate(event)">
+		<br>
+		WaitTime?: <input type="number" id="waittime" value="500" oninput="handleChangeWaitTime(event)">
+		<br>
+		<canvas id="grid2" width="32" height="32"></canvas>
+	</body>
+	
+	<script src="./static.js"></script>
+	
+	<script>
+		
+		console.log("START OF SCRIPT");
+
+		updatePixelGrid();
+
+		console.log("END OF SCRIPT");
+	</script>
+	
+</html>
