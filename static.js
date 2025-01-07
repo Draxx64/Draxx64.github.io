@@ -7,6 +7,10 @@ var scale = 16;
 var width = 32;
 var height = 32;
 
+var rightedge = width*scale;
+
+var doRainbow = false;
+
 const canvas = document.getElementById("grid");
 const ctx = canvas.getContext("2d");
 
@@ -52,15 +56,22 @@ function handleChangeColor(event, id){
 
 function changeColor(value, id){
 	let _value = value;
+	/*
 	let good = true;
 	if(_value === "#ffffff"){
 		_value = argebe(33, 33, 33);
 		good = false;
 	}
+	*/
 	ctx.fillStyle = _value;
-	ctx.fillRect(512, 128*id, 128, 128);
+	ctx.fillRect(rightedge, 128*id, 128, 128);
 	colorlist[id] = _value;
 	fullUpdate();
+}
+
+function redrawSideColors(){
+	changeColor(colorlist[0], 0);
+	changeColor(colorlist[1], 1);
 }
 
 function checkcolor(colorid){
@@ -165,6 +176,10 @@ function getRandomElement(arr){
 	return Math.floor(Math.random()*(arr.length+1));
 }
 
+function getRandomColor(){
+	return argebe(Math.random()*255, Math.random()*255, Math.random()*255);
+}
+
 function arrayToColor(arr){
 	return argebe(arr[0], arr[1], arr[2]);
 }
@@ -173,13 +188,36 @@ function updatePixelGrid(){
 	for(x = 0; x < width; x++){
 		for(y = 0; y < height; y++){
 			
-			ctx.fillStyle = arrayToColor(lerpcolor(0, 1));
+			if(!doRainbow){
+				ctx.fillStyle = arrayToColor(lerpcolor(0, 1));
+			}
+			if(doRainbow){
+				ctx.fillStyle = getRandomColor();
+			}
 			ctx2.fillStyle = ctx.fillStyle;
 			
 			ctx.fillRect(x*scale, y*scale, scale, scale);
 			ctx2.fillRect(x, y, 1, 1);
 		}
 	}
+}
+
+const resNum = document.getElementById("resolutionactual");
+resNum.innerHTML = "Resolution: " + width + " x " + height;
+
+// make sure to update the canvas accordingly
+function handleChangeResolutionEx(event){
+	width = 2**event.target.value;
+	height = width;
+	resNum.innerHTML = "Resolution: " + width + " x " + height;
+	scale = 32/(width/16);
+	rightedge = width*scale;
+	canvas.width = width*scale+128;
+	canvas.height = height*scale;
+	canvas2.width = width;
+	canvas2.height = height;
+	redrawSideColors();
+	fullUpdate();
 }
 
 function handleChangeCheckLinear(event){
@@ -189,6 +227,11 @@ function handleChangeCheckLinear(event){
 
 function handleChangeCheckRelative(event){
 	relativelerp = event.target.checked;
+	fullUpdate();
+}
+
+function handleChangeCheckRainbow(event){
+	doRainbow = event.target.checked;
 	fullUpdate();
 }
 

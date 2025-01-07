@@ -8,16 +8,25 @@
 		<br>
 		<input type="color" class="colorsel" id="colorsel0" value="#ff00ff" oninput="handleChangeColor(event, 0)">
 		<input type="color" class="colorsel" id="colorsel1" value="#00ffff" oninput="handleChangeColor(event, 1)">
+		<!--
 		<input type="color" class="colorsel" id="colorsel2" value="#212121" oninput="handleChangeColor(event, 2)">
 		<input type="color" class="colorsel" id="colorsel3" value="#212121" oninput="handleChangeColor(event, 3)">
+		-->
 		<br>
+		<p onclick="fullUpdate()" class="dontuchme">Click me to regenerate image</p>
+		
+		Resolution Exponent: <input type="number" id="resolution" value="5" min="1" max="10" oninput="handleChangeResolutionEx(event)" style="width: 33px;">
+		<br>
+		<p id="resolutionactual"> </p>
 		LinearLerp?: <input type="checkbox" oninput="handleChangeCheckLinear(event)" checked>
 		<br>
 		RelativeLerp?: <input type="checkbox" oninput="handleChangeCheckRelative(event)" checked>
 		<br>
+		Total Rainbow?: <input type="checkbox" oninput="handleChangeCheckRainbow(event)">
+		<br>
 		Animate?: <input type="checkbox" oninput="handleChangeCheckAnimate(event)">
 		<br>
-		WaitTime?: <input type="number" id="waittime" value="500" oninput="handleChangeWaitTime(event)">
+		WaitTime?: <input type="number" id="waittime" value="500" oninput="handleChangeWaitTime(event)" style="width: 50px;">
 		<br>
 		<canvas id="grid2" width="32" height="32"></canvas>
 	</body>
